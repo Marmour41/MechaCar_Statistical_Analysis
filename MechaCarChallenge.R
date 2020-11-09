@@ -1,0 +1,15 @@
+mechacar_mpg <- read.csv("MechaCar_mpg.csv",stringsAsFactors = F)
+head(mechacar_mpg)
+lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AWD, data=mechacar_mpg)
+summary(lm(mpg ~ vehicle_length + vehicle_weight + spoiler_angle + ground_clearance + AWD, data=mechacar_mpg))
+total_summary <- coils %>% summarize(Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), Standard_Deviation=sd(PSI), .groups='keep')
+lot_summary <- coils %>% group_by(Manufacturing_Lot) %>% summarize(Mean=mean(PSI), Median=median(PSI), Variance=var(PSI), Standard_Deviation=sd(PSI), .groups='keep')
+
+#t-tests
+.test(coils$PSI,mu=mean(coils$PSI))
+subset1 <- subset(coils, Manufacturing_Lot == 'Lot1', select=PSI)
+subset2 <- subset(coils, Manufacturing_Lot == 'Lot2', select=PSI)
+subset3 <- subset(coils, Manufacturing_Lot == 'Lot3', select=PSI)
+t.test(subset1$PSI, mu=mean(coils$PSI))
+t.test(subset2$PSI, mu=mean(coils$PSI))
+t.test(subset3$PSI, mu=mean(coils$PSI))
